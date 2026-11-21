@@ -151,7 +151,7 @@ function paintMine(){const n=total();$("#cnt").textContent=n.toLocaleString("th-
   $("#hist").innerHTML="";for(const[id,i]of rows){const li=document.createElement("li");li.textContent=`วันที่โหวต ${i.day} (${i.date} ${i.time} KST) · +${i.votes} ดาว · เลข ${id}`;$("#hist").appendChild(li)}}
 async function loadMine(){
   handle=handle||norm($("#handle").value);items={};fresh=0;paintMine();setMsg("กำลังโหลดกาแลกซีของคุณ...");
-  const db=await getDb();if(!db){setMsg("ยังโหลดฐานข้อมูลไม่ได้ ต้องล็อกอิน claude.ai และเปิดผ่านลิงก์ที่ได้รับสิทธิ์ก่อน","err");return}
+  const db=await getDb();if(!db){setMsg("ยังโหลดฐานข้อมูลไม่ได้ ต้องล็อกอินและเปิดผ่านลิงก์ที่ได้รับสิทธิ์ก่อน","err");return}
   try{const s=await db.doc("galaxy/"+handle).get();items=(s.exists&&s.data().items)||{};paintMine();setMsg(s.exists?"ยินดีต้อนรับกลับมา เติมดาวต่อได้เลย":"กาแลกซีใหม่! อัปโหลด certificate เพื่อเริ่มเติมดาว",s.exists?"ok":"")}
   catch(e){setMsg("โหลดข้อมูลไม่สำเร็จ ลองรีเฟรชอีกครั้ง","err")}}
 function setMsg(t,c){const m=$("#msg");m.textContent=t;m.className="msg "+(c||"")}
