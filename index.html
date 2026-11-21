@@ -237,7 +237,7 @@ async function savePng(kind){
   g.font='700 66px Mali,"Noto Sans Thai",sans-serif';g.fillText(mine?"ดวงดาวในกาแลกซีของ @"+handle:"กาแลกซีรวม 2027 MKMA",w/2,118);
   g.font='400 38px Mali,"Noto Sans Thai",sans-serif';g.fillStyle="#d6c4ff";
   g.fillText(mine?`ดาว ${$("#cnt").textContent} ดวง`:`${$("#nusers").textContent} คน · ดาว ${$("#tot").textContent} ดวง`,w/2,178);
-  const blob=await new Promise(res=>c.toBlob(res,"image/png")),a=document.createElement("a");
+  fit(title,700,44,h-92,"#fff");fit(sub,400,28,h-44,"#d6c4ff");
   a.href=URL.createObjectURL(blob);a.download=mine?`galaxy-${handle}.png`:"galaxy-all.png";document.body.appendChild(a);a.click();a.remove();
   if(mine)setMsg("บันทึกรูปแล้ว","ok")}
 $("#dlMine").onclick=()=>savePng("mine");$("#dlAll").onclick=()=>savePng("all");
