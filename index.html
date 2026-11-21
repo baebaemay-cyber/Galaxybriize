@@ -211,7 +211,7 @@ $("#dlAll").onclick=()=>savePng("all");
 /* ---------- combined galaxy ---------- */
 async function loadAll(){
   $("#allmsg").textContent="กำลังโหลดกาแลกซีรวม...";const db=await getDb();
-  if(!db){$("#allmsg").textContent="ยังโหลดฐานข้อมูลไม่ได้ ต้องล็อกอิน claude.ai ก่อน";return}
+  if(!db){$("#allmsg").textContent="ยังโหลดฐานข้อมูลไม่ได้ ต้องล็อกอินก่อน";return}
   const timer=setTimeout(()=>{$("#allmsg").textContent="โหลดนานผิดปกติ ลองรีเฟรชหน้า"},10000);
   unsub=db.collection("galaxy").onSnapshot(snap=>{clearTimeout(timer);
     const rows=snap.docs.map(d=>d.data()).filter(d=>d&&d.handle).map(d=>({h:d.handle,n:Object.values(d.items||{}).reduce((a,i)=>a+(i.votes||0),0)})).sort((a,b)=>b.n-a.n);
